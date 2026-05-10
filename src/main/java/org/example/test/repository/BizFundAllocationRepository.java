@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface BizFundAllocationRepository extends JpaRepository<BizFundAllocation, Long> {
 
+    long countByDeletedFalse();
+
     List<BizFundAllocation> findByDeletedFalseOrderByIdDesc();
 }

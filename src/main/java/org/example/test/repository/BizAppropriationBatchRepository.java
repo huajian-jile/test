@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface BizAppropriationBatchRepository extends JpaRepository<BizAppropriationBatch, Long> {
 
+    long countByDeletedFalse();
+
     List<BizAppropriationBatch> findByDeletedFalseOrderByIdDesc();
 }

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:ui9080": "vite --port 9080",
     "build": "vite build",
     "preview": "vite preview"
   },

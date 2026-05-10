@@ -13,3 +13,7 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
   flyway:
     enabled: false
+
+# 单元测试不跑百条演示数据，加快启动
+app:
+  demo-seed-enabled: false

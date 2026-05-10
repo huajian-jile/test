@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface SysOrgRepository extends JpaRepository<SysOrg, Long> {
 
+    long countByDeletedFalse();
+
     List<SysOrg> findByDeletedFalseOrderBySortOrderAscIdAsc();
 }

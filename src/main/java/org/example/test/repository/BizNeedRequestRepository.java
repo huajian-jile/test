@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface BizNeedRequestRepository extends JpaRepository<BizNeedRequest, Long> {
 
+    long countByDeletedFalse();
+
     List<BizNeedRequest> findByDeletedFalseOrderByIdDesc();
 }

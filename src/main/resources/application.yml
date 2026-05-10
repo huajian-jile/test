@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9000
 
 spring:
   application:
@@ -22,6 +22,8 @@ spring:
     locations: classpath:db/migration
 
 app:
+  demo-seed-enabled: true
+  demo-seed-rows: 100
   jwt:
     secret: "ChangeThisSecretKeyToAtLeast256BitsForHS256!!"
     expiration-ms: 86400000

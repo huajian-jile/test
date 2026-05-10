@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface BizHouseholdRepository extends JpaRepository<BizHousehold, Long> {
 
+    long countByDeletedFalse();
+
     List<BizHousehold> findByDeletedFalseOrderByIdDesc();
 }

@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface BizFundSourceRepository extends JpaRepository<BizFundSource, Long> {
 
+    long countByDeletedFalse();
+
     List<BizFundSource> findByDeletedFalseOrderByIdAsc();
 }

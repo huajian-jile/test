@@ -7,5 +7,7 @@ import java.util.Optional;
 
 public interface SysUserRepository extends JpaRepository<SysUser, Long> {
 
+    long countByDeletedFalse();
+
     Optional<SysUser> findByUsernameAndDeletedFalse(String username);
 }

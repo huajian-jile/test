@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface BizHouseholdFundReceiptRepository extends JpaRepository<BizHouseholdFundReceipt, Long> {
 
+    long countByDeletedFalse();
+
     List<BizHouseholdFundReceipt> findByDeletedFalseOrderByIdDesc();
 }
