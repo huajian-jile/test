@@ -217,8 +217,11 @@ public class DataInitializer implements CommandLineRunner {
 
         BizIndividualDonor d = new BizIndividualDonor();
         d.setDonorType("PERSON");
-        d.setDisplayName("爱心人士");
+        d.setDonorName("李善");
+        d.setGender("女");
+        d.setDisplayName("李善");
         d.setPhone("13800000000");
+        d.setRemark("首批演示捐赠人");
         d.setCreatedAt(n);
         d.setUpdatedAt(n);
         d.setCreatedBy(userId);
@@ -230,8 +233,12 @@ public class DataInitializer implements CommandLineRunner {
         dr.setDonorId(d.getId());
         dr.setAmount(new BigDecimal("500.00"));
         dr.setDonatedAt(n);
-        dr.setChannel("线上");
-        dr.setPublicVisible(true);
+        dr.setDonationLocation("某省某市某县希望小学");
+        dr.setRecipientName("王受助");
+        dr.setRecipientAddress("某乡某村一组 18 号");
+        dr.setRecipientFamilySituation("五口人，父母务农，两名学龄儿童，家庭人均收入低于当地低保线");
+        dr.setGroupPhotoUrl("/uploads/demo/donation-001.jpg");
+        dr.setRemark("现场捐赠并合影");
         dr.setCreatedAt(n);
         dr.setUpdatedAt(n);
         dr.setCreatedBy(userId);

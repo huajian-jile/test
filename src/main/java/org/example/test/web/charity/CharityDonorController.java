@@ -28,15 +28,25 @@ public class CharityDonorController {
         return ApiResult.ok(repository.findByDeletedFalseOrderByIdDesc());
     }
 
-    public record CreateReq(String donorType, String displayName, String phone, Long userId) {
+    public record CreateReq(
+            String donorType,
+            String donorName,
+            String gender,
+            String phone,
+            String remark,
+            Long userId) {
     }
 
     @PostMapping
     public ApiResult<Map<String, Long>> create(@RequestBody CreateReq req) {
         BizIndividualDonor d = new BizIndividualDonor();
         d.setDonorType(req.donorType() == null ? "PERSON" : req.donorType());
-        d.setDisplayName(req.displayName());
+        String name = req.donorName() == null || req.donorName().isBlank() ? "未登记" : req.donorName();
+        d.setDonorName(name);
+        d.setGender(req.gender());
+        d.setDisplayName(name);
         d.setPhone(req.phone());
+        d.setRemark(req.remark());
         d.setUserId(req.userId());
         AuditHelper.onCreate(d);
         repository.save(d);

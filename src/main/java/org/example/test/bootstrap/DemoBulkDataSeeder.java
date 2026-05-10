@@ -291,11 +291,16 @@ public class DemoBulkDataSeeder implements CommandLineRunner {
     private void seedDonors(Long actorId, long stamp) {
         int need = rows - (int) donorRepository.countByDeletedFalse();
         LocalDateTime n = LocalDateTime.now();
+        String[] genders = {"男", "女", "不愿透露"};
         for (int i = 0; i < need; i++) {
             BizIndividualDonor d = new BizIndividualDonor();
             d.setDonorType(i % 5 == 0 ? "企业" : "PERSON");
-            d.setDisplayName("演示捐赠人-" + stamp + "-" + i);
+            String name = "演示捐赠人-" + stamp + "-" + i;
+            d.setDonorName(name);
+            d.setGender(genders[i % genders.length]);
+            d.setDisplayName(name);
             d.setPhone(String.format("138%08d", Math.floorMod(i, 100_000_000)));
+            d.setRemark("批量演示备注-" + i);
             d.setUserId(null);
             touch(d, actorId, n);
             donorRepository.save(d);
@@ -314,12 +319,12 @@ public class DemoBulkDataSeeder implements CommandLineRunner {
             r.setDonorId(did);
             r.setAmount(BigDecimal.valueOf(100L + i * 10L).setScale(2, RoundingMode.HALF_UP));
             r.setDonatedAt(n.minusDays(i % 90));
-            r.setChannel(i % 2 == 0 ? "线上" : "线下");
-            r.setTargetType("REGION");
-            r.setTargetId(null);
-            r.setCertificateNo("CERT-" + stamp + "-" + String.format("%05d", i));
-            r.setPublicVisible(i % 3 != 0);
-            r.setRemark("批量演示捐赠");
+            r.setDonationLocation("演示地点-" + (i % 20) + "号村");
+            r.setRecipientName("受助方-" + i);
+            r.setRecipientAddress("演示县演示乡第" + (i % 50) + "组");
+            r.setRecipientFamilySituation("家庭人口 " + (2 + i % 5) + " 人，主要困难为医疗支出较大");
+            r.setGroupPhotoUrl("/uploads/demo/bulk-" + stamp + "-" + i + ".jpg");
+            r.setRemark("批量演示捐赠记录");
             touch(r, actorId, n);
             donationRecordRepository.save(r);
         }

@@ -32,13 +32,13 @@ public class CharityDonationController {
 
     public record CreateReq(
             Long donorId,
-            BigDecimal amount,
             LocalDateTime donatedAt,
-            String channel,
-            String targetType,
-            Long targetId,
-            String certificateNo,
-            Boolean publicVisible,
+            String donationLocation,
+            String recipientName,
+            String recipientAddress,
+            String recipientFamilySituation,
+            BigDecimal amount,
+            String groupPhotoUrl,
             String remark) {
     }
 
@@ -48,11 +48,11 @@ public class CharityDonationController {
         r.setDonorId(req.donorId());
         r.setAmount(req.amount());
         r.setDonatedAt(req.donatedAt() == null ? LocalDateTime.now() : req.donatedAt());
-        r.setChannel(req.channel());
-        r.setTargetType(req.targetType());
-        r.setTargetId(req.targetId());
-        r.setCertificateNo(req.certificateNo());
-        r.setPublicVisible(req.publicVisible() == null || req.publicVisible());
+        r.setDonationLocation(req.donationLocation());
+        r.setRecipientName(req.recipientName());
+        r.setRecipientAddress(req.recipientAddress());
+        r.setRecipientFamilySituation(req.recipientFamilySituation());
+        r.setGroupPhotoUrl(req.groupPhotoUrl());
         r.setRemark(req.remark());
         AuditHelper.onCreate(r);
         repository.save(r);
